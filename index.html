@@ -742,8 +742,8 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>openMM(false)
   v.muted=true; v.setAttribute('muted','');           // required for autoplay
   // hero clip referenced as a separate file via <source src="hero-video-01.mp4">
 
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){ v.removeAttribute('autoplay'); try{v.pause();}catch(e){} return; } // poster only
+  // NOTE: hero autoplays unconditionally (consistent with the before/after clip);
+  // reduced-motion freeze removed so the hero is not stuck on the poster.
 
   const play=()=>{ const p=v.play(); if(p&&p.catch) p.catch(()=>{}); };
   v.addEventListener('loadeddata',play,{once:true});
